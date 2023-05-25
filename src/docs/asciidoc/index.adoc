@@ -3,7 +3,7 @@
 :source-highlighter: highlightjs
 :sectlinks:
 
-== 상품
+include::product-api.adoc[]
 
 == 장바구니
 
