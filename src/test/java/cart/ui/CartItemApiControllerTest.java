@@ -124,7 +124,7 @@ class CartItemApiControllerTest {
 
         mockMvc.perform(RestDocumentationRequestBuilders.delete("/cart-items/{id}", 1L)
                         .header("Authorization", "basic " + "YUBhLmNvbToxMjM0"))
-                .andExpect(status().isNoContent())
+                .andExpect(status().isOk())
                 .andDo(RestDocsHelper.prettyDocument(
                         "cart-items/deleteCartItems",
                         pathParameters(
