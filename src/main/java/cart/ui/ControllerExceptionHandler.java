@@ -8,14 +8,31 @@ import cart.exception.ShoppingOrderException;
 import cart.exception.UnauthorizedAccessException;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
+    private static final String BAD_REQUEST_MESSAGE = "잘못된 요청입니다.";
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status,
+            WebRequest request) {
+        Map<String, String> validation = new HashMap<>();
+        for (FieldError fieldError : ex.getFieldErrors()) {
+            validation.put(fieldError.getField(), fieldError.getDefaultMessage());
+        }
+        return ResponseEntity.badRequest()
+                .body(new ResultResponse<>(BAD_REQUEST_MESSAGE, validation));
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Response> handleException(Exception e) {
@@ -47,6 +64,6 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         Map<String, String> validation = new HashMap<>();
         validation.put(e.getField(), e.getMessage());
         return ResponseEntity.badRequest()
-                .body(new ResultResponse<>("잘못된 요청입니다.", validation));
+                .body(new ResultResponse<>(BAD_REQUEST_MESSAGE, validation));
     }
 }

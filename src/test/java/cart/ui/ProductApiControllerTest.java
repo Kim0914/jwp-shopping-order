@@ -107,7 +107,7 @@ class ProductApiControllerTest {
         // given
         given(productService.createProduct(any(ProductRequest.class)))
                 .willReturn(1L);
-        ProductRequest request = new ProductRequest("치킨", 10000, "http://image.com/image.png");
+        ProductRequest request = new ProductRequest("치킨", 10_000L, "http://image.com/image.png");
 
         // expect
         mockMvc.perform(post("/products")
@@ -127,7 +127,7 @@ class ProductApiControllerTest {
     @DisplayName("상품을 수정한다.")
     void updateProduct() throws Exception {
         // given
-        ProductRequest request = new ProductRequest("치킨", 10000, "http://image.com/image.png");
+        ProductRequest request = new ProductRequest("치킨", 10_000L, "http://image.com/image.png");
 
         // expect
         mockMvc.perform(put("/products/{id}", 1L)
