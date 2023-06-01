@@ -1,5 +1,7 @@
 package cart.domain;
 
+import cart.exception.NumberRangeException;
+
 public class Point {
     private final long amount;
 
@@ -10,12 +12,8 @@ public class Point {
 
     private void validate(long amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException("포인트는 음수가 될 수 없습니다.");
+            throw new NumberRangeException("point", "포인트는 음수가 될 수 없습니다.");
         }
-    }
-
-    public long getAmount() {
-        return amount;
     }
 
     public Point plus(Point point) {

@@ -12,6 +12,7 @@ import cart.dto.OrderItemRequest;
 import cart.dto.OrderItemResponse;
 import cart.dto.OrderRequest;
 import cart.dto.OrderResponse;
+import cart.exception.ProductNotFoundException;
 import cart.repository.OrderRepository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class OrderService {
 
     private Product findProduct(Long productId) {
         return productDao.findById(productId)
-                .orElseThrow(IllegalArgumentException::new); // TODO
+                .orElseThrow(() -> new ProductNotFoundException("해당 상품을 찾을 수 없습니다."));
     }
 
     private void deleteCartItems(Member member, List<OrderItem> orderItems) {

@@ -1,5 +1,7 @@
 package cart.domain;
 
+import cart.exception.NumberRangeException;
+import cart.exception.UnauthorizedAccessException;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +25,7 @@ public class Order {
 
     private void validateOverPrice(List<OrderItem> orderItems, long spendPoint) {
         if (hasOverPrice(orderItems, spendPoint)) {
-            throw new IllegalArgumentException(); // TODO
+            throw new NumberRangeException("point", "포인트는 총 주문 가격보다 클 수 없습니다.");
         }
     }
 
@@ -81,7 +83,7 @@ public class Order {
 
     public void checkOwner(Member member) {
         if (!Objects.equals(this.member, member)) {
-            throw new IllegalArgumentException(); // TODO
+            throw new UnauthorizedAccessException("해당 회원의 주문이 아닙니다.");
         }
     }
 
