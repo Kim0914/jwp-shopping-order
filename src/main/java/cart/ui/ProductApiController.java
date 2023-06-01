@@ -1,10 +1,10 @@
 package cart.ui;
 
 import cart.application.ProductService;
-import cart.dto.ProductRequest;
-import cart.dto.ProductResponse;
-import cart.dto.Response;
-import cart.dto.ResultResponse;
+import cart.dto.request.ProductRequest;
+import cart.dto.response.ProductResponse;
+import cart.dto.response.Response;
+import cart.dto.response.ResultResponse;
 import java.net.URI;
 import java.util.List;
 import org.springframework.http.ResponseEntity;

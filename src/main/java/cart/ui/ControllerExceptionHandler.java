@@ -1,7 +1,7 @@
 package cart.ui;
 
-import cart.dto.Response;
-import cart.dto.ResultResponse;
+import cart.dto.response.Response;
+import cart.dto.response.ResultResponse;
 import cart.exception.AuthenticationException;
 import cart.exception.NumberRangeException;
 import cart.exception.ShoppingOrderException;

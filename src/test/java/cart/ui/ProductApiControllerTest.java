@@ -18,8 +18,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import cart.application.ProductService;
 import cart.dao.MemberDao;
 import cart.domain.Product;
-import cart.dto.ProductRequest;
-import cart.dto.ProductResponse;
+import cart.dto.request.ProductRequest;
+import cart.dto.response.ProductResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;

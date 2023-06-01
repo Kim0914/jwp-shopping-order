@@ -19,11 +19,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import cart.application.OrderService;
 import cart.dao.MemberDao;
 import cart.domain.Member;
-import cart.dto.OrderDetailResponse;
-import cart.dto.OrderItemRequest;
-import cart.dto.OrderItemResponse;
-import cart.dto.OrderRequest;
-import cart.dto.OrderResponse;
+import cart.dto.response.OrderDetailResponse;
+import cart.dto.request.OrderItemRequest;
+import cart.dto.response.OrderItemResponse;
+import cart.dto.request.OrderRequest;
+import cart.dto.response.OrderResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.LocalDateTime;
 import java.util.List;

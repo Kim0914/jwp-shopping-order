@@ -2,10 +2,10 @@ package cart.ui;
 
 import cart.application.CartItemService;
 import cart.domain.Member;
-import cart.dto.CartItemQuantityUpdateRequest;
-import cart.dto.CartItemRequest;
-import cart.dto.Response;
-import cart.dto.ResultResponse;
+import cart.dto.request.CartItemQuantityUpdateRequest;
+import cart.dto.request.CartItemRequest;
+import cart.dto.response.Response;
+import cart.dto.response.ResultResponse;
 import java.net.URI;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
