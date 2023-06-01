@@ -19,7 +19,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Response> handleException(Exception e) {
-        logger.error(e.getMessage());
+        logger.error(e.getMessage(), e);
         return ResponseEntity.internalServerError()
                 .body(new Response("서버에 알 수 없는 문제가 발생했습니다."));
     }
