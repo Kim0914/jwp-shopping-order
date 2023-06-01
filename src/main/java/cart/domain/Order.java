@@ -1,5 +1,6 @@
 package cart.domain;
 
+import cart.exception.IllegalOrderException;
 import cart.exception.NumberRangeException;
 import cart.exception.UnauthorizedAccessException;
 import java.time.LocalDateTime;
@@ -17,12 +18,19 @@ public class Order {
     private LocalDateTime createdAt;
 
     public Order(Long id, Member member, List<OrderItem> orderItems, long spendPoint, LocalDateTime createdAt) {
+        validateEmptyOrderItems(orderItems);
         validateOverPrice(orderItems, spendPoint);
         this.id = id;
         this.member = member;
         this.orderItems = orderItems;
         this.spendPoint = new Point(spendPoint);
         this.createdAt = createdAt;
+    }
+
+    private void validateEmptyOrderItems(List<OrderItem> orderItems) {
+        if (orderItems.isEmpty()) {
+            throw new IllegalOrderException("주문할 상품이 존재하지 않습니다.");
+        }
     }
 
     private void validateOverPrice(List<OrderItem> orderItems, long spendPoint) {
