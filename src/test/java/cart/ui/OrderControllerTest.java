@@ -91,7 +91,7 @@ class OrderControllerTest {
     @Test
     void 회원의_모든_주문을_조회_요청을_정상적으로_처리한다() throws Exception {
         Member member = new Member(1L, "aa@aaa.com", "1234", 1000);
-        OrderResponse orderResponse = new OrderResponse(1L, "http://image.com/image.png", 10000L, LocalDateTime.now());
+        OrderResponse orderResponse = new OrderResponse(1L, "http://image.com/image.png","감자",2, 10000L, LocalDateTime.now());
         given(orderService.findAllOrders(any(Member.class)))
                 .willReturn(List.of(orderResponse));
         given(memberDao.findByEmail(any())).willReturn(Optional.of(member));
@@ -107,6 +107,8 @@ class OrderControllerTest {
                         relaxedResponseFields(
                                 fieldWithPath("result[].orderId").description("주문 ID"),
                                 fieldWithPath("result[].thumbnail").description("주문 상품 대표 썸네일 URL"),
+                                fieldWithPath("result[].firstProductName").description("대표 상품 이름"),
+                                fieldWithPath("result[].totalCount").description("주문 상품 수량"),
                                 fieldWithPath("result[].spendPrice").description("주문 총 금액"),
                                 fieldWithPath("result[].createdAt").description("주문 생성 시간")
                         )

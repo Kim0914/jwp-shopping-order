@@ -45,6 +45,18 @@ public class Order {
                 .reduce(Price.ZERO, Price::plus).getAmount() < spendPoint;
     }
 
+    public String getFirstProductName() {
+        return orderItems.stream()
+                .map(OrderItem::getProduct)
+                .map(Product::getName)
+                .findFirst()
+                .orElseThrow(() -> new IllegalOrderException("해당 주문 상품을 찾을 수 없습니다."));
+    }
+
+    public int getOrderItemCount() {
+        return orderItems.size();
+    }
+
     public String getThumbnailUrl() {
         return orderItems.stream()
                 .map(OrderItem::getProduct)

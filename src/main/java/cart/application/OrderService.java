@@ -107,8 +107,11 @@ public class OrderService {
     }
 
     private OrderResponse convertToOrderResponse(Order order) {
-        return new OrderResponse(order.getId(),
+        return new OrderResponse(
+                order.getId(),
                 order.getThumbnailUrl(),
+                order.getFirstProductName(),
+                order.getOrderItemCount(),
                 order.calculateSpendPrice().getAmount(),
                 order.getCreatedAt()
         );
