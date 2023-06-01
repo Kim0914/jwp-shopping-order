@@ -23,4 +23,27 @@ public class Point {
     public Point minus(Point point) {
         return new Point(this.amount - point.amount);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Point)) {
+            return false;
+        }
+
+        Point point = (Point) o;
+
+        return amount == point.amount;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (amount ^ (amount >>> 32));
+    }
+
+    public long getAmount() {
+        return amount;
+    }
 }

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Order {
+    private static final String EMPTY_IMAGE_URL = "";
+
     private Long id;
     private Member member;
     private List<OrderItem> orderItems;
@@ -40,7 +42,7 @@ public class Order {
                 .map(OrderItem::getProduct)
                 .map(Product::getImageUrl)
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new); // TODO
+                .orElse(EMPTY_IMAGE_URL);
     }
 
     public Price calculateTotalPrice() {
@@ -59,26 +61,6 @@ public class Order {
         long amount = spendPrice.getAmount();
         double reward = amount * (percent / 100);
         return new Point((long) Math.ceil(reward));
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Member getMember() {
-        return member;
-    }
-
-    public List<OrderItem> getOrderItems() {
-        return Collections.unmodifiableList(orderItems);
-    }
-
-    public Point getSpendPoint() {
-        return spendPoint;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
     }
 
     public void checkOwner(Member member) {
@@ -102,5 +84,25 @@ public class Order {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return Collections.unmodifiableList(orderItems);
+    }
+
+    public Point getSpendPoint() {
+        return spendPoint;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }

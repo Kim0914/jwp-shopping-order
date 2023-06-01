@@ -36,10 +36,6 @@ public class Price {
         return new Price(this.amount.multiply(BigDecimal.valueOf(factor)));
     }
 
-    public long getAmount() {
-        return amount.longValue();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -55,5 +51,9 @@ public class Price {
     @Override
     public int hashCode() {
         return Objects.hash(amount);
+    }
+
+    public long getAmount() {
+        return amount.longValue();
     }
 }
